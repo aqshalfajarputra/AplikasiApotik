@@ -23,7 +23,7 @@
                          ?>
                       </select>
                       <label>Produsen</label>
-                      <input type="number" class="form-control" name="produsen"  placeholder="" >
+                      <input type="text" class="form-control" name="produsen"  placeholder="" >
                       <label>Harga</label>
                       <input type="number" class="form-control" name="harga"  placeholder="" >
                       <label>Foto Obat</label>

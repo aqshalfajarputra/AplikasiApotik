@@ -29,8 +29,8 @@
                     <th>ID Obat</th>
                     <th>Nama Obat</th>
                     <th>Harga Obat</th>
-                    <th>Indikasi</th>
                     <th>Stok</th>
+                    <th>Produsen</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -42,8 +42,8 @@
                   <td>'.$data->id_obat.'</td>
                   <td>'.$data->nama_obat.'</td>
                   <td>'.$data->harga_obat.'</td>
-                  <td>'.$data->indikasi.'</td>
                   <td>'.$data->stok.'</td>
+                  <td>'.$data->produsen.'</td>
                   <td>
                   <a href="'.base_url().'index.php/admin/tambah_stok/'.$data->id_obat.'" class="btn btn-success btn-sm"><i class="glyphicon glyphicon-plus"></i> Tambah</a>
                   <a href="'.base_url().'index.php/admin/hapus_obat/'.$data->id_obat.'" class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i> Hapus</a>

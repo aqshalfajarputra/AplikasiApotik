@@ -102,7 +102,7 @@ class Admin_model extends CI_Model{
     }
   }
 
-  public function save_penjualan($file)
+  public function save_obat($file)
   {
       $id = $this->input->post('id_obat');
       $nama = $this->input->post('nama_obat');

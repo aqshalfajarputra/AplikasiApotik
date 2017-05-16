@@ -147,6 +147,32 @@ class Admin extends CI_Controller
 
     }
 
+    public function bayar()
+    {
+      if ($this->session->userdata('status')== TRUE) {
+      $data['main_view'] = 'struk_view';
+      $data ['jabatan'] = $this->session->userdata('jabatan');
+      //get data dropdown
+      $data['obat'] = $this->admin_model->dropdown_obat();
+      $data['transaksi']= $this->admin_model->get_data_transaksi();
+
+      // validasi inputan
+      $hasil = $this->session->flashdata('hasil');
+      if ($hasil == 'berhasil') {
+        $data['notif'] = 'Transaksi sukses!!';
+      }else if ($hasil == 'kurang') {
+        $data['notif'] = 'Stok Kurang!!';
+      }else if ($hasil == 'gagal') {
+        $data['notif'] = 'Transaksi Gagal!!';
+      }
+
+
+      $this->load->view('template',$data);
+      } else {
+        $this->load->view('login_view');
+      }
+    }
+
     public function save_obat()
       {
         if ($this->input->post('submit')) {
@@ -156,8 +182,8 @@ class Admin extends CI_Controller
           $this->form_validation->set_rules('nama_obat','Nama Obat','trim|required');
           $this->form_validation->set_rules('qty','Jumlah Obat','trim|required');
           $this->form_validation->set_rules('suplier','Suplier','trim|required');
-          $this->from_validation->set_rules('produsen','Produsen','trim|required');
-          $this->from_validation->set_rules('harga','Harga','trim|required');
+          $this->form_validation->set_rules('produsen','Produsen','trim|required');
+          $this->form_validation->set_rules('harga','Harga','trim|required');
 
         if ($this->form_validation->run() == TRUE) {
           $config['upload_path']='./upload/';
@@ -165,16 +191,17 @@ class Admin extends CI_Controller
 				  $config['max_size']='25000000';
 
           $this->load->library('upload', $config);
+          $this->upload->initialize($config);
           if ($this->upload->do_upload('foto')) {
             if ($this->admin_model->save_obat($this->upload->data()) == TRUE) {
                     //pengiriman variable ke function penjualan jika benar
                     $this->session->set_flashdata('hasil','berhasil');
-                    redirect(base_url().'index.php/admin/penjualan');
+                    redirect(base_url().'index.php/admin/obat');
                     }
                     else {
                       //pengiriman variable ke function penjualan jika salah
                       $this->session->set_flashdata('hasil','gagal');
-                      redirect(base_url().'index.php/admin/penjualan');
+                      redirect(base_url().'index.php/admin/obat');
                         }
 
                       }else{

@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Penjualan Obat <strong>Apotik Khazanah</strong>
+            Struk Obat <strong>Apotik Khazanah</strong>
         </h1>
     </div>
 </div>
